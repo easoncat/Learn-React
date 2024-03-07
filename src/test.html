@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class A {
+            constructor(name) {
+                this.name = name
+            }
+        }
+
+        class C {
+            constructor(name) {
+                this.name = name
+            }
+        }
+
+        class Container {
+            constructor() {
+                this.modeuls = {}
+            }
+            provide(key, modeuls) {
+                this.modeuls[key] = modeuls
+            }
+            get(key) {
+                return this.modeuls[key]
+            }
+        }
+
+        const mo = new Container();
+        mo.provide("a", new A('gys'))
+        mo.provide("c", new C('lxd'))
+
+        class B {
+            constructor(container) {
+                this.a = container.get("a");
+                this.c = container.get("c");
+            }
+        }
+
+        const b = new B(mo);
+        console.log(b.a.name, b.c.name)
+    </script>
+</body>
+</html>
