@@ -17,3 +17,17 @@
     font-size: 16px;
     color: #194b49;
 }
+
+.delete {
+    margin-right: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.delete:hover {
+    color: red;
+    transform: rotate(1turn)
+}

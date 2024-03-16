@@ -15,6 +15,10 @@ export default function LogItem(props) {
         <h2 className='desc'>{desc}</h2>
         <div className='time'>{time}分钟</div>
       </div>
+
+      <div>
+        <div className='delete' onClick={props.deleteLog}>x</div>
+      </div>
     </Card>
   )
 }
