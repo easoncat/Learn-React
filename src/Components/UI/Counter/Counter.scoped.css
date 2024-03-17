@@ -1,0 +1,28 @@
+.Counter-box {
+    display: flex;
+    align-items: center;
+}
+
+.sub,
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #fcbf49;
+    width: 36rem;
+    height: 36rem;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.sub {
+    background-color: white;
+    border: 1px solid black
+}
+
+.count {
+    font-size: 16px;
+    margin: 0 5px;
+}
