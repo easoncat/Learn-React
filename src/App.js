@@ -1,6 +1,9 @@
 import React, { memo, useState } from 'react';
 import Meals from './Components/Meals/Meals';
 import CartContext from './Store/cart-context';
+import FilterInput from './Components/UI/FilterInput/FilterInput';
+import Cart from './Components/UI/Cart/Cart';
+import Backdrop from './Components/UI/Backdrop/Backdrop';
 
 // 模拟一组食物数据
 const MEALS_DATA = [
@@ -62,6 +65,13 @@ const App = memo(() => {
     totalPrice: 0
   });
 
+  // 过滤函数
+  const filterHandler = (keyword) => {
+    // 如果传递一个空的字符串,默认匹配全部
+    const newMealsData = MEALS_DATA.filter(item => item.title.indexOf(keyword) !== -1)
+    setMealsData(newMealsData)
+  }
+
   // 向购物车中添加商品
   const addItem = (meal) => {
     // meal 要添加到购物车的商品
@@ -98,7 +108,10 @@ const App = memo(() => {
   return (
     <CartContext.Provider value={{...cartData, addItem, removeItem}}>
       <div>
+        <FilterInput onFilter={filterHandler}></FilterInput>
         <Meals mealsData={mealsData}></Meals> 
+        <Cart></Cart>
+        <Backdrop></Backdrop>
       </div>
     </CartContext.Provider>
     
