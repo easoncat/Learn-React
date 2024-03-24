@@ -40,4 +40,7 @@
     font-size: 14px;
 }
 
+.content {
+    flex: auto
+}
 

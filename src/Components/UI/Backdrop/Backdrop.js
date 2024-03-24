@@ -6,6 +6,7 @@ const backdropDOM = document.getElementById('backdrop');
 
 export default function Backdrop(props) {
   return ReactDOM.createPortal(<div
+    {...props}
     className='backdrop'
   >
     {props.children}

@@ -1,0 +1,40 @@
+.backdrop {
+    z-index: 1000;
+}
+
+.confirmWrapper {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 650rem;
+    height: 300rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 30rem;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 35rem;
+}
+
+.cancel, .ok {
+    width: 150rem;
+    height: 60rem;
+    font-size: 25rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 30rem;
+}
+
+.ok {
+    border: none;
+    background-color: #fcbf49;
+    margin-left: 40rem;
+}

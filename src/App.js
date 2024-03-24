@@ -3,7 +3,6 @@ import Meals from './Components/Meals/Meals';
 import CartContext from './Store/cart-context';
 import FilterInput from './Components/UI/FilterInput/FilterInput';
 import Cart from './Components/UI/Cart/Cart';
-import Backdrop from './Components/UI/Backdrop/Backdrop';
 
 // 模拟一组食物数据
 const MEALS_DATA = [
@@ -104,14 +103,24 @@ const App = memo(() => {
     setCartData(newCart);
   }
 
+  // 清空购物车
+  const clearCart = () => {
+    const newCart = {...cartData}
+    // 清空购物车商品
+    newCart.items.forEach(item => {delete item.amount})
+    newCart.items = [];
+    newCart.totalAmount = 0;
+    newCart.totalPrice = 0;
+    setCartData(newCart)
+  }
+
 
   return (
-    <CartContext.Provider value={{...cartData, addItem, removeItem}}>
+    <CartContext.Provider value={{...cartData, addItem, removeItem, clearCart}}>
       <div>
         <FilterInput onFilter={filterHandler}></FilterInput>
         <Meals mealsData={mealsData}></Meals> 
         <Cart></Cart>
-        <Backdrop></Backdrop>
       </div>
     </CartContext.Provider>
     

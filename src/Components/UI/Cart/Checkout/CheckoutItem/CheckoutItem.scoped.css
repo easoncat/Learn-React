@@ -1,0 +1,39 @@
+.outer {
+    display: flex;
+}
+
+.checkoutImg {
+    width: 150rem;
+}
+
+.checkoutImg img {
+    width: 100%;
+}
+
+.desc {
+    flex: auto;
+    font-size: 25rem;
+    padding: 20rem;
+}
+
+.desc header {
+    font-weight: bold;
+    font-size: 30rem;
+    padding-bottom: 30rem;
+}
+
+.descwrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: 28rem;
+    font-weight: bold;
+}
+
+.price::before {
+    content: '￥';
+    font-size: 24rem;
+    font-weight: normal;
+}
