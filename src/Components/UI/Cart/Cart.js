@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import iconImg from '../../../asset/bag.png'
 import CartContext from '../../../Store/cart-context'
 import Checkout from './Checkout/Checkout'
@@ -9,6 +9,13 @@ export default function Cart() {
   const ctx = useContext(CartContext);
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
+
+  useEffect(()=> {
+    if(ctx.totalAmount === 0) {
+      setIsDetailVisible(false);
+      setShowCheckout(false)
+    }
+  },[ctx])
 
   const toggleDetailsHandler = () => {
     if(ctx.totalAmount === 0) {

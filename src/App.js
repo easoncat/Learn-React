@@ -1,8 +1,9 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useReducer, useState } from 'react';
 import Meals from './Components/Meals/Meals';
 import CartContext from './Store/cart-context';
 import FilterInput from './Components/UI/FilterInput/FilterInput';
 import Cart from './Components/UI/Cart/Cart';
+import { cartReducer } from './reducer/CartReducer';
 
 // 模拟一组食物数据
 const MEALS_DATA = [
@@ -55,14 +56,41 @@ const MEALS_DATA = [
 
 const App = memo(() => {
   const [mealsData, setMealsData] = useState(MEALS_DATA);
-  
-  // 存储购物车的数据
-  // 商品，商品总数，商品总价
-  const [cartData, setCartData] = useState({
+  const [cartState, cartDispatch] = useReducer(cartReducer, {
     items: [],
     totalAmount: 0,
     totalPrice: 0
-  });
+  })
+
+  // useEffect(() => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //     redirect: 'follow'
+  //   };
+
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("http://127.0.0.1:4523/m1/1505156-0-default/api/student", requestOptions)
+  //       const result = await response.text()
+  //       console.log(result)
+  //     } catch (e) {
+  //       console.log(e)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [])
+  
+  // 存储购物车的数据
+  // 商品，商品总数，商品总价
+  // const [cartData, setCartData] = useState({
+  //   items: [],
+  //   totalAmount: 0,
+  //   totalPrice: 0
+  // });
 
   // 过滤函数
   const filterHandler = (keyword) => {
@@ -71,52 +99,9 @@ const App = memo(() => {
     setMealsData(newMealsData)
   }
 
-  // 向购物车中添加商品
-  const addItem = (meal) => {
-    // meal 要添加到购物车的商品
-    const newCart = {...cartData};
-    if(newCart.items.indexOf(meal) === -1) {
-      newCart.items.push(meal);
-      meal.amount = 1;
-    } else {
-      meal.amount+=1;
-    }
-    newCart.totalAmount += 1
-    newCart.totalPrice += meal.price
-    setCartData(newCart);
-  }
-
-  // 向购物车中删除商品
-  const removeItem = (meal) => {
-    // meal 要将购物车的商品删除
-    const newCart = {...cartData};
-    meal.amount -= 1;
-
-    // 检查商品数量是否为 0
-    if(meal.amount === 0) {
-      // 从购物车中移除商品
-      newCart.items.splice(newCart.items.indexOf(meal), 1);
-    }
-
-    newCart.totalAmount -= 1
-    newCart.totalPrice -= meal.price
-    setCartData(newCart);
-  }
-
-  // 清空购物车
-  const clearCart = () => {
-    const newCart = {...cartData}
-    // 清空购物车商品
-    newCart.items.forEach(item => {delete item.amount})
-    newCart.items = [];
-    newCart.totalAmount = 0;
-    newCart.totalPrice = 0;
-    setCartData(newCart)
-  }
-
 
   return (
-    <CartContext.Provider value={{...cartData, addItem, removeItem, clearCart}}>
+    <CartContext.Provider value={{...cartState, cartDispatch}}>
       <div>
         <FilterInput onFilter={filterHandler}></FilterInput>
         <Meals mealsData={mealsData}></Meals> 

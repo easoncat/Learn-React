@@ -17,7 +17,8 @@ export default function CartDetails(props) {
   }
 
   const okHandler = () => {
-    ctx.clearCart()
+    // ctx.clearCart()
+    ctx.cartDispatch({type: "CLEAR"})
   }
 
   return (
