@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:150px;
+    text-align: center;
+}
+
+.table {
+    width: 700px;
+    border: 2px solid #444;
+    border-spacing: 0;
+    margin: 10px auto;
+}
+
+.table tr th{
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444
+}
+
+.table td {
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444;
+    padding: 5px;
+}
