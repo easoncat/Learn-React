@@ -8,7 +8,7 @@ const useAutoLogout = () => {
 
   // 创建一个 useEffect，用来处理登陆状态
   useEffect(() => {
-    const timeout = auth.expirationTime - Data.now();
+    const timeout = auth.expirationTime - Date.now();
     if(timeout<60000) {
       dispatch(logout());
       return;
