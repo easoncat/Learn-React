@@ -13,8 +13,9 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "antd": "^5.16.0",
     "axios": "^1.6.8",
-    "craco-less": "1.17.1",
+    "craco-less": "3.0.1",
     "craco-plugin-scoped-css": "^1.1.1",
     "craco-scoped-less": "1.0.3",
     "react": "^18.2.0",
@@ -25,8 +26,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && craco start",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
